@@ -1,6 +1,7 @@
 import re
 from banco import verifiacarId
 from validate_email import validate_email
+import phonenumbers
 
 def isNameValid(nome):
     if len(nome) > 3:
@@ -8,10 +9,13 @@ def isNameValid(nome):
     return False
 
 def isTelefoneValid(telefone):
-    telefone = re.sub(r'\D', '', telefone)
-    if len(telefone) < 9:
+    try:
+        telefone_formatado = phonenumbers.parse(telefone, None)
+        # Verificar se é um número de telefone válido
+        is_valid = phonenumbers.is_valid_number(telefone_formatado)
+        return is_valid
+    except phonenumbers.phonenumberutil.NumberParseException:
         return False
-    return True
 
 def  isEmailValid(email):
     is_valid = validate_email(email)

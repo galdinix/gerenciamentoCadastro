@@ -18,6 +18,7 @@ def deleterConsulta():
 def listar():
     id = receberId()
     opcListagem = receberOpcListagem()
-    listarNoBanco(id, opcListagem)
+    #listarNoBanco(id, opcListagem)
 
+adicionarConsulta()
 
