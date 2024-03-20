@@ -1,5 +1,6 @@
 import re
 from banco import verifiacarId
+from validate_email import validate_email
 
 def isNameValid(nome):
     if len(nome) > 3:
@@ -13,10 +14,11 @@ def isTelefoneValid(telefone):
     return True
 
 def  isEmailValid(email):
-    regex = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
-    if re.match(regex, email):
+    is_valid = validate_email(email)
+    if is_valid:
         return True
     return False
+
 
 def idIsValid(id):
     if verifiacarId(id):
